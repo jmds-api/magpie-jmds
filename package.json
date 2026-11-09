@@ -1,7 +1,7 @@
 {
-  "name": "magpie-sub2api",
-  "version": "0.2.2",
-  "description": "magpie provider plugin for any sub2api site: the key's models, and its subscription, quota or balance as magpie usage",
+  "name": "magpie-jmds",
+  "version": "0.1.0",
+  "description": "jmds provider for magpie: subscription windows, extra usage, wallet balance and model prices",
   "type": "module",
   "main": "./index.mjs",
   "exports": "./index.mjs",
@@ -19,32 +19,26 @@
     "opencode-plugin",
     "magpie",
     "magpie-plugin",
-    "sub2api",
+    "jmds",
     "provider"
   ],
   "author": "Randy (broven)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/broven/magpie-sub2api.git"
+    "url": "git+https://github.com/zerith-llc/magpie-jmds.git"
   },
-  "homepage": "https://github.com/broven/magpie-sub2api#readme",
+  "homepage": "https://github.com/zerith-llc/magpie-jmds#readme",
   "bugs": {
-    "url": "https://github.com/broven/magpie-sub2api/issues"
+    "url": "https://github.com/zerith-llc/magpie-jmds/issues"
   },
   "engines": {
     "node": ">=20"
   },
   "magpie": {
-    "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+U3ViMkFQSTwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPkFuIGludGVybG9ja2luZyBTIHN5bWJvbCByZXByZXNlbnRpbmcgc3Vic2NyaXB0aW9uIHJvdXRpbmcgaW50byBBUElzLjwvZGVzYz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iczJhLWJnIiB4MT0iNzIiIHkxPSI0NCIgeDI9IjQ0MiIgeTI9IjQ3OCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjMTQyQjU2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjUyIiBzdG9wLWNvbG9yPSIjMEExQTM5Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzA2MTEyNyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iczJhLWFtYmllbnQiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTY4IDkyKSByb3RhdGUoNTEpIHNjYWxlKDM0MiAzODIpIj4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzNFNjhCMCIgc3RvcC1vcGFjaXR5PSIuMjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM0U2OEIwIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InMyYS1icmFuZCIgeDE9IjQiIHkxPSI0IiB4Mj0iMjAiIHkyPSIyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjNzlGNEJEIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjQ4IiBzdG9wLWNvbG9yPSIjMzlEOUU3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzM4NzVGNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InMyYS1zaGFkb3ciIHg9Ii0yNSUiIHk9Ii0yNSUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE2NSUiIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0ic1JHQiI+CiAgICAgIDxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIuNTUiIHN0ZERldmlhdGlvbj0iLjY1IiBmbG9vZC1jb2xvcj0iIzAyMDgxNyIgZmxvb2Qtb3BhY2l0eT0iLjM0Ii8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CgogIDxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSI0ODAiIHJ4PSIxMjAiIGZpbGw9InVybCgjczJhLWJnKSIvPgogIDxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSI0ODAiIHJ4PSIxMjAiIGZpbGw9InVybCgjczJhLWFtYmllbnQpIi8+CiAgPHJlY3QgeD0iMTYuNzUiIHk9IjE2Ljc1IiB3aWR0aD0iNDc4LjUiIGhlaWdodD0iNDc4LjUiIHJ4PSIxMTkuMjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1QkZGRiIgc3Ryb2tlLW9wYWNpdHk9Ii4xNiIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTIgNTIpIHNjYWxlKDE3KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI3MyYS1icmFuZCkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyLjciIGZpbHRlcj0idXJsKCNzMmEtc2hhZG93KSI+CiAgICA8cGF0aCBkPSJtMTkuMjUgNy42NS0yLjU1LTMuMmExLjMzIDEuMzMgMCAwIDAtMS4wMy0uNUg4LjU4Yy0uMzQgMC0uNjcuMTMtLjkxLjM3TDQuMTUgNy42NWMtLjkzLjg4LS42IDEuNTIuNjUgMi4zbDkuNTUgNS45NyIvPgogICAgPHBhdGggZD0ibTQuNzUgMTYuMzUgMi41NSAzLjJjLjI1LjMxLjYzLjUgMS4wMy41aDcuMDljLjM0IDAgLjY3LS4xMy45MS0uMzdsMy41Mi0zLjMzYy45My0uODguNi0xLjUyLS42NS0yLjNMOS42NSA4LjA4Ii8+CiAgPC9nPgo8L3N2Zz4K",
+    "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+57ud5ZG95q+S5biIPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+6Z2S6Imy5YWD57Sg5ZGo5pyf6KGo6aOO5qC855qE4oCc5q+S4oCd5a2X56uZ54K55Zu+5qCHPC9kZXNjPgoKICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYnJhbmQiIHgxPSI3MiIgeTE9IjQ4IiB4Mj0iNDQwIiB5Mj0iNDY0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzVERDBFMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM0QUI4QzgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgoKICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNicmFuZCkiLz4KCiAgPGcgZmlsbD0iIzA4MTYxQSIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyBTQywgUGluZ0ZhbmcgU0MsIE1pY3Jvc29mdCBZYUhlaSwgc2Fucy1zZXJpZiI+CiAgICA8dGV4dCB4PSI2MiIgeT0iOTIiIGZvbnQtZmFtaWx5PSJKZXRCcmFpbnMgTW9ubywgU0ZNb25vLVJlZ3VsYXIsIENvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iNTIiIGZvbnQtd2VpZ2h0PSI3MDAiPjUxPC90ZXh0PgogICAgPHRleHQgeD0iMjU2IiB5PSIzMzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjcwIiBmb250LXdlaWdodD0iOTAwIj7mr5I8L3RleHQ+CiAgICA8dGV4dCB4PSI0NTAiIHk9IjQ1NCIgdGV4dC1hbmNob3I9ImVuZCIgZm9udC1mYW1pbHk9IkpldEJyYWlucyBNb25vLCBTRk1vbm8tUmVndWxhciwgQ29uc29sYXMsIG1vbm9zcGFjZSIgZm9udC1zaXplPSI0NiIgZm9udC13ZWlnaHQ9IjcwMCI+Sm08L3RleHQ+CiAgPC9nPgo8L3N2Zz4K",
     "options": {
-      "sites": [
-        {
-          "id": "my-site",
-          "name": "My sub2api",
-          "url": "https://api.example.com"
-        }
-      ]
+      "baseURL": "https://api.jmds.dev"
     }
   }
 }

@@ -1,0 +1,75 @@
+{
+  "usage": {
+    "user": "127.0.0.1:32798 …cc8d",
+    "windows": [
+      {
+        "name": "24 hours",
+        "used": 100,
+        "display": "$5.00 / $5.00",
+        "amount": 5,
+        "limit": 5,
+        "unit": "USD",
+        "span": 86400,
+        "resetsAt": "2026-11-10T00:00:00Z"
+      },
+      {
+        "name": "7 days",
+        "used": 10.5,
+        "display": "$2.10 / $20.00",
+        "amount": 2.1,
+        "limit": 20,
+        "unit": "USD",
+        "span": 604800,
+        "resetsAt": "2026-11-16T13:40:49.642494Z"
+      },
+      {
+        "name": "30 days",
+        "used": 4.2,
+        "display": "$2.10 / $50.00",
+        "amount": 2.1,
+        "limit": 50,
+        "unit": "USD",
+        "span": 2592000,
+        "resetsAt": "2026-12-09T13:40:49.499882Z"
+      },
+      {
+        "name": "额外用量",
+        "used": 100,
+        "display": "$10.00 / $10.00",
+        "amount": 10,
+        "limit": 10,
+        "unit": "USD",
+        "aside": true
+      }
+    ],
+    "plan": "Test Subscription",
+    "until": "2026-12-09T13:40:49.499882Z"
+  },
+  "original": {
+    "status": 429,
+    "body": {
+      "code": "USAGE_LIMIT_EXCEEDED",
+      "message": "error: code=429 reason=\"DAILY_LIMIT_EXCEEDED\" message=\"daily usage limit exceeded\" metadata=map[]"
+    }
+  },
+  "rewritten": {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "date": "Mon, 09 Nov 2026 13:41:02 GMT",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-client-request-id": "d6131d10-a2ec-4c49-9c57-90d9341609ad",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-request-id": "17bb17c5-5a23-4672-9bf8-1026efbc6c74",
+      "x-served-version": "1.6.144"
+    },
+    "body": {
+      "code": "USAGE_LIMIT_EXCEEDED",
+      "message": "error: code=429 reason=\"DAILY_LIMIT_EXCEEDED\" message=\"daily usage limit exceeded\" metadata=map[]",
+      "error": {
+        "resets_at": 1794268800
+      }
+    }
+  }
+}

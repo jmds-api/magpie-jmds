@@ -1,45 +1,33 @@
 # 发版清单 / Release checklist
 
-## 每次发版 / Every release
+发布由维护者手动批准；开发和测试不自动 push 或发布 npm。
 
-1. `npm test` and `SUB2API_IMAGE_TAG=latest npm test`. Both must pass locally (CI runs the same matrix).
-2. **手动跑一遍真实 magpie / Run `./e2e.sh` against a real magpie and a real site** before tagging. Do it once per key kind you have: a subscription group's key, a balance group's key, and a key with its own quota.
+1. 对新接口镜像和上游兼容镜像分别跑 E2E：
    ```sh
-   SUB2API_URL=https://api.example.com SUB2API_KEY=sk-... ./e2e.sh
+   SUB2API_IMAGE=sub2api-fork:key-status ./test/run.sh
+   SUB2API_IMAGE=weishaw/sub2api:latest ./test/run.sh
    ```
-   Check that:
-   - `plugin list` / `quota` names each account `SUB2API_NAME` if set, else `host …last4` (the first `quota` may still say `API key …last4`: the name is written on first use);
-   - `plugin list` shows the site's own provider as `e2e-site (E2E site, …)`, and no other `Sub2apiSite` slot left behind;
-   - `quota --json` shows the windows, plan and expiry the README's table promises;
-   - `models` lists the group's models under both `sub2api/` and `e2e-site/`;
-   - `provider test sub2api` and `provider test e2e-site` both get an answer.
-3. Bump `version` in `package.json` and commit.
-4. Tag it and push the tag: `git tag v0.1.0 && git push origin v0.1.0`. The tag must be `v` + the package's version.
-5. `publish.yml` runs the e2e matrix and then `npm publish --provenance --access public` over OIDC. Check the package page on npm for the provenance badge.
-
-## 第一次发布（启用 trusted publishing）/ First publish
-
-npm configures trusted publishing per package, in the package's settings, so the package has to exist first.
-
-1. Create the GitHub repo `broven/magpie-sub2api` and push `main`. `package.json`'s `repository.url` must match this repo exactly (`git+https://github.com/broven/magpie-sub2api.git`).
-2. Publish 0.1.0 by hand from a clean checkout of the tag:
+2. 用真实 magpie 分别验证订阅 key 和余额 key（真实请求可能计费）：
    ```sh
-   npm login
-   npm publish --access public
+   JMDS_KEY=sk-... JMDS_NAME=release-check ./e2e.sh
    ```
-   Don't push the `v0.1.0` tag before this: `publish.yml` would fail, because the package doesn't exist yet. If you push it afterwards, that run's publish step fails because 0.1.0 is already on npm, and that failure is expected.
-3. On npmjs.com, go to **magpie-sub2api › Settings › Trusted publishing** and add **GitHub Actions** with:
-   - organization or user: `broven`
-   - repository: `magpie-sub2api`
-   - workflow filename: `publish.yml`
-   - environment: leave it empty (the workflow uses none)
-4. Use the new config within 2 days, or it lapses: bump to the next version and release with a tag as above, so the first OIDC publish happens.
-5. Once it works, in the same Settings page set **Publishing access** to require 2FA and disallow tokens. Then only the workflow can publish. Revoke any automation token you made.
+   检查单一 `jmds` provider、账号名、用量窗口、余额、模型和真实请求结果。
+3. 更新 `package.json` 版本，提交测试产物，保持工作区干净。
+4. 由维护者创建并推送与包版本一致的 `v*` tag。
+5. `publish.yml` 先调用 CI，然后使用 npm Trusted Publishing（OIDC）发布 `magpie-jmds`。
 
-Requirements the workflow already meets:
-- `permissions: id-token: write`
-- Node ≥ 22.14 (the workflow uses 24)
-- npm ≥ 11.5.1 (installed in the job)
-- a GitHub-hosted runner
+## 首次发布与 Trusted Publishing
 
-With trusted publishing npm adds provenance on its own; `--provenance` is kept so the intent is explicit.
+npm 的 Trusted Publishing 按包配置。首次发布须由维护者从已审核的干净检出手动完成；不要提前推 tag 触发尚未配置好的自动发布。
+
+在 npm 的 **magpie-jmds › Settings › Trusted publishing** 中选择 GitHub Actions：
+
+- organization: `zerith-llc`
+- repository: `magpie-jmds`
+- workflow: `publish.yml`
+- environment: 留空
+
+`package.json` 的 repository 必须为 `git+https://github.com/zerith-llc/magpie-jmds.git`。
+工作流已配置 Node 24、npm ≥ 11.5.1、GitHub-hosted runner 和 `id-token: write`。
+维护者还需配置 CI 的只读拉取凭证 `GHCR_READ_TOKEN` 与镜像标签变量 `SUB2API_FORK_TAG`。
+外部 PR 没有该凭证时明确跳过 fork 测试，仍运行上游兼容测试。

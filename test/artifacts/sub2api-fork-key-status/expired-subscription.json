@@ -1,0 +1,218 @@
+{
+  "image": "sub2api-fork:key-status",
+  "usage": {
+    "user": "127.0.0.1:32798 …cc8d",
+    "windows": [
+      {
+        "name": "24 hours",
+        "used": 20,
+        "display": "$1.00 / $5.00",
+        "amount": 1,
+        "limit": 5,
+        "unit": "USD",
+        "span": 86400,
+        "resetsAt": "2026-11-08T13:41:06.581726Z"
+      },
+      {
+        "name": "7 days",
+        "used": 10.5,
+        "display": "$2.10 / $20.00",
+        "amount": 2.1,
+        "limit": 20,
+        "unit": "USD",
+        "span": 604800,
+        "resetsAt": "2026-11-08T13:41:06.581726Z"
+      },
+      {
+        "name": "30 days",
+        "used": 4.2,
+        "display": "$2.10 / $50.00",
+        "amount": 2.1,
+        "limit": 50,
+        "unit": "USD",
+        "span": 2592000,
+        "resetsAt": "2026-11-08T13:41:06.581726Z"
+      }
+    ],
+    "plan": "Test Subscription",
+    "until": "2026-11-08T13:41:06.581726Z",
+    "error": "订阅已过期"
+  },
+  "upstream": {
+    "object": "key_status",
+    "observed_at": "2026-11-09T13:41:08.324219926Z",
+    "key": {
+      "name": "e2e-subscription",
+      "status": "active",
+      "expires_at": null,
+      "quota": null,
+      "rate_limits": []
+    },
+    "group": {
+      "id": 2,
+      "name": "Test Subscription",
+      "platform": "anthropic",
+      "billing_mode": "subscription",
+      "rate_multiplier": 1
+    },
+    "subscription": {
+      "status": "expired",
+      "plan_name": "Test Subscription",
+      "expires_at": "2026-11-08T13:41:06.581726Z",
+      "windows": [
+        {
+          "window": "daily",
+          "limit_usd": 5,
+          "used_usd": 1,
+          "reset_at": "2026-11-08T13:41:06.581726Z"
+        },
+        {
+          "window": "weekly",
+          "limit_usd": 20,
+          "used_usd": 2.1,
+          "reset_at": "2026-11-08T13:41:06.581726Z"
+        },
+        {
+          "window": "monthly",
+          "limit_usd": 50,
+          "used_usd": 2.1,
+          "reset_at": "2026-11-08T13:41:06.581726Z"
+        }
+      ],
+      "extra_usage": {
+        "remaining_usd": 0,
+        "used_usd": 0,
+        "granted_total_usd": 0
+      }
+    },
+    "balance": null,
+    "models": [
+      {
+        "id": "claude-fable-5",
+        "pricing": {
+          "input": 10,
+          "output": 50,
+          "cache_read": 1,
+          "cache_write": 12.5
+        }
+      },
+      {
+        "id": "claude-fable-5-1",
+        "pricing": {
+          "input": 10,
+          "output": 50,
+          "cache_read": 0.25,
+          "cache_write": 12.5
+        }
+      },
+      {
+        "id": "claude-haiku-4-5-20251001",
+        "pricing": {
+          "input": 1,
+          "output": 5,
+          "cache_read": 0.09999999999999999,
+          "cache_write": 1.25
+        }
+      },
+      {
+        "id": "claude-haiku-5-5",
+        "pricing": {
+          "input": 0.09999999999999999,
+          "output": 0.5,
+          "cache_read": 0.01,
+          "cache_write": 0.125
+        }
+      },
+      {
+        "id": "claude-opus-4-5-20251101",
+        "pricing": {
+          "input": 5,
+          "output": 25,
+          "cache_read": 0.5,
+          "cache_write": 6.25
+        }
+      },
+      {
+        "id": "claude-opus-4-6",
+        "pricing": {
+          "input": 5,
+          "output": 25,
+          "cache_read": 0.5,
+          "cache_write": 6.25
+        }
+      },
+      {
+        "id": "claude-opus-4-7",
+        "pricing": {
+          "input": 5,
+          "output": 25,
+          "cache_read": 0.5,
+          "cache_write": 6.25
+        }
+      },
+      {
+        "id": "claude-opus-4-8",
+        "pricing": {
+          "input": 5,
+          "output": 25,
+          "cache_read": 0.5,
+          "cache_write": 6.25
+        }
+      },
+      {
+        "id": "claude-opus-5",
+        "pricing": {
+          "input": 5,
+          "output": 25,
+          "cache_read": 0.5,
+          "cache_write": 6.25
+        }
+      },
+      {
+        "id": "claude-opus-5-5",
+        "pricing": {
+          "input": 4,
+          "output": 20,
+          "cache_read": 0.19999999999999998,
+          "cache_write": 5
+        }
+      },
+      {
+        "id": "claude-sonnet-4-5-20250929",
+        "pricing": {
+          "input": 3,
+          "output": 15,
+          "cache_read": 0.3,
+          "cache_write": 3.75
+        }
+      },
+      {
+        "id": "claude-sonnet-4-6",
+        "pricing": {
+          "input": 3,
+          "output": 15,
+          "cache_read": 0.3,
+          "cache_write": 3.75
+        }
+      },
+      {
+        "id": "claude-sonnet-5",
+        "pricing": {
+          "input": 2,
+          "output": 10,
+          "cache_read": 0.19999999999999998,
+          "cache_write": 2.5
+        }
+      },
+      {
+        "id": "claude-sonnet-5-5",
+        "pricing": {
+          "input": 2,
+          "output": 10,
+          "cache_read": 0.09999999999999999,
+          "cache_write": 2.5
+        }
+      }
+    ]
+  }
+}

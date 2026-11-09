@@ -1,0 +1,129 @@
+{
+  "image": "weishaw/sub2api:latest",
+  "usage": {
+    "user": "127.0.0.1:32799 …a8b4",
+    "plan": "API key limits",
+    "windows": [
+      {
+        "name": "Key quota",
+        "used": 10.5,
+        "display": "$1.05 / $10.00"
+      },
+      {
+        "name": "5 hours",
+        "used": 21,
+        "display": "$1.05 / $5.00",
+        "resetsAt": "2026-11-09T18:41:35.88836Z",
+        "span": 18000
+      },
+      {
+        "name": "24 hours",
+        "used": 13.125,
+        "display": "$1.05 / $8.00",
+        "resetsAt": "2026-11-10T00:00:00Z",
+        "span": 86400
+      },
+      {
+        "name": "7 days",
+        "used": 5.25,
+        "display": "$1.05 / $20.00",
+        "resetsAt": "2026-11-16T00:00:00Z",
+        "span": 604800
+      }
+    ],
+    "until": "2026-12-09T13:41:35.806286Z"
+  },
+  "upstream": {
+    "daily_usage": [
+      {
+        "date": "2026-11-09",
+        "requests": 1,
+        "input_tokens": 100000,
+        "output_tokens": 50000,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "total_tokens": 150000,
+        "cost": 1.05,
+        "actual_cost": 1.05
+      }
+    ],
+    "days_until_expiry": 29,
+    "expires_at": "2026-12-09T13:41:35.806286Z",
+    "isValid": true,
+    "mode": "quota_limited",
+    "model_stats": [
+      {
+        "model": "claude-sonnet-4-5-20250929",
+        "requests": 1,
+        "input_tokens": 100000,
+        "output_tokens": 50000,
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "total_tokens": 150000,
+        "cost": 1.05,
+        "actual_cost": 1.05,
+        "account_cost": 1.05
+      }
+    ],
+    "quota": {
+      "limit": 10,
+      "remaining": 8.95,
+      "unit": "USD",
+      "used": 1.05
+    },
+    "rate_limits": [
+      {
+        "limit": 5,
+        "remaining": 3.95,
+        "reset_at": "2026-11-09T18:41:35.88836Z",
+        "used": 1.05,
+        "window": "5h",
+        "window_start": "2026-11-09T13:41:35.88836Z"
+      },
+      {
+        "limit": 8,
+        "remaining": 6.95,
+        "reset_at": "2026-11-10T00:00:00Z",
+        "used": 1.05,
+        "window": "1d",
+        "window_start": "2026-11-09T00:00:00Z"
+      },
+      {
+        "limit": 20,
+        "remaining": 18.95,
+        "reset_at": "2026-11-16T00:00:00Z",
+        "used": 1.05,
+        "window": "7d",
+        "window_start": "2026-11-09T00:00:00Z"
+      }
+    ],
+    "remaining": 8.95,
+    "status": "active",
+    "unit": "USD",
+    "usage": {
+      "average_duration_ms": 2,
+      "rpm": 0,
+      "today": {
+        "actual_cost": 1.05,
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost": 1.05,
+        "input_tokens": 100000,
+        "output_tokens": 50000,
+        "requests": 1,
+        "total_tokens": 150000
+      },
+      "total": {
+        "actual_cost": 1.05,
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost": 1.05,
+        "input_tokens": 100000,
+        "output_tokens": 50000,
+        "requests": 1,
+        "total_tokens": 150000
+      },
+      "tpm": 30000
+    }
+  }
+}
