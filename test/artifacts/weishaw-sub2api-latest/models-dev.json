@@ -5,7 +5,7 @@
     "name": "Claude Fable 5.1",
     "api": {
       "id": "claude-fable-5-1",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -51,7 +51,7 @@
     "name": "Claude Fable 5",
     "api": {
       "id": "claude-fable-5",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -97,7 +97,7 @@
     "name": "Claude Opus 4.5",
     "api": {
       "id": "claude-opus-4-5-20251101",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -141,7 +141,7 @@
     "name": "Claude Opus 4.6",
     "api": {
       "id": "claude-opus-4-6",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -186,7 +186,7 @@
     "name": "Claude Opus 4.7",
     "api": {
       "id": "claude-opus-4-7",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -232,7 +232,7 @@
     "name": "Claude Opus 4.8",
     "api": {
       "id": "claude-opus-4-8",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -278,7 +278,7 @@
     "name": "Claude Opus 5.5",
     "api": {
       "id": "claude-opus-5-5",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -324,7 +324,7 @@
     "name": "Claude Opus 5",
     "api": {
       "id": "claude-opus-5",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -370,7 +370,7 @@
     "name": "Claude Sonnet 5.5",
     "api": {
       "id": "claude-sonnet-5-5",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -416,7 +416,7 @@
     "name": "Claude Sonnet 5",
     "api": {
       "id": "claude-sonnet-5",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -462,7 +462,7 @@
     "name": "Claude Sonnet 4.6",
     "api": {
       "id": "claude-sonnet-4-6",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -507,7 +507,7 @@
     "name": "Claude Sonnet 4.5",
     "api": {
       "id": "claude-sonnet-4-5-20250929",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -551,7 +551,7 @@
     "name": "Claude Haiku 4.5",
     "api": {
       "id": "claude-haiku-4-5-20251001",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -595,7 +595,7 @@
     "name": "Claude Haiku 5.5",
     "api": {
       "id": "claude-haiku-5-5",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/anthropic"
     },
     "status": "active",
@@ -641,7 +641,7 @@
     "name": "deepseek-flash",
     "api": {
       "id": "deepseek-flash",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/openai-compatible"
     },
     "status": "active",
@@ -687,7 +687,7 @@
     "name": "glm-4.6",
     "api": {
       "id": "glm-4.6",
-      "url": "http://127.0.0.1:32799/v1",
+      "url": "http://127.0.0.1:32810/v1",
       "npm": "@ai-sdk/openai-compatible"
     },
     "status": "active",

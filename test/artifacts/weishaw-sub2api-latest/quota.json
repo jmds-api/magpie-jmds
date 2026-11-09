@@ -1,7 +1,7 @@
 {
   "image": "weishaw/sub2api:latest",
   "usage": {
-    "user": "127.0.0.1:32799 …a8b4",
+    "user": "127.0.0.1:32810 …931f",
     "plan": "API key limits",
     "windows": [
       {
@@ -13,7 +13,7 @@
         "name": "5 hours",
         "used": 21,
         "display": "$1.05 / $5.00",
-        "resetsAt": "2026-11-09T18:41:35.88836Z",
+        "resetsAt": "2026-11-09T23:32:36.484152Z",
         "span": 18000
       },
       {
@@ -31,7 +31,7 @@
         "span": 604800
       }
     ],
-    "until": "2026-12-09T13:41:35.806286Z"
+    "until": "2026-12-09T18:32:36.424732Z"
   },
   "upstream": {
     "daily_usage": [
@@ -48,7 +48,7 @@
       }
     ],
     "days_until_expiry": 29,
-    "expires_at": "2026-12-09T13:41:35.806286Z",
+    "expires_at": "2026-12-09T18:32:36.424732Z",
     "isValid": true,
     "mode": "quota_limited",
     "model_stats": [
@@ -75,10 +75,10 @@
       {
         "limit": 5,
         "remaining": 3.95,
-        "reset_at": "2026-11-09T18:41:35.88836Z",
+        "reset_at": "2026-11-09T23:32:36.484152Z",
         "used": 1.05,
         "window": "5h",
-        "window_start": "2026-11-09T13:41:35.88836Z"
+        "window_start": "2026-11-09T18:32:36.484152Z"
       },
       {
         "limit": 8,
@@ -101,7 +101,7 @@
     "status": "active",
     "unit": "USD",
     "usage": {
-      "average_duration_ms": 2,
+      "average_duration_ms": 1,
       "rpm": 0,
       "today": {
         "actual_cost": 1.05,

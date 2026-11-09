@@ -27,4 +27,4 @@ docker image inspect "$SUB2API_IMAGE" --format 'image {{.Id}} created {{.Created
 mkdir -p "$here/.state" "$here/artifacts/$SUB2API_IMAGE_TAG"
 node "$here/setup.mjs" "$base" >"$STATE"
 curl -fsS "$base/health" >/dev/null
-node --test --test-reporter=spec "$here/plugin.test.mjs" "$here/errors.test.mjs"
+node --test --test-reporter=spec "$here/claude-code.test.mjs" "$here/plugin.test.mjs" "$here/errors.test.mjs"

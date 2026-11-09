@@ -96,7 +96,12 @@ const stdGroup = await admin("POST", "/api/v1/admin/groups", {
   default_validity_days: 30,
   model_pricing: PRICING,
 })
-log("groups", subGroup.id, stdGroup.id)
+const ccGroup = await admin("POST", "/api/v1/admin/groups", {
+  name: "Test Claude Code", platform: "anthropic", subscription_type: "standard",
+  rate_multiplier: 1, default_validity_days: 30, model_pricing: PRICING, claude_code_only: true,
+})
+if (ccGroup.claude_code_only !== true) throw new Error('Claude Code group restriction not enabled')
+log("groups", subGroup.id, stdGroup.id, ccGroup.id)
 
 const account = await admin("POST", "/api/v1/admin/accounts", {
   name: "fake-anthropic",
@@ -157,6 +162,10 @@ for (const [mode, key] of Object.entries(keys)) {
   waited[mode] = Date.now() - t0
 }
 log("usage counted after (ms)", JSON.stringify(waited))
+// Keep this restricted group without upstream accounts: passing client validation
+// reaches a scheduling error, while other clients must still get the CC-only 403.
+keys.claudeCode = await mkKey({ name: 'e2e-claude-code', group_id: ccGroup.id })
+if (!keys.claudeCode) throw new Error('no Claude Code key')
 
 process.stdout.write(
   JSON.stringify({ base, keys, fork, userId: user.id, subGroupId: subGroup.id, model: MODEL, limits: { subscription: LIMITS, quota: QUOTA, topup: TOPUP }, groups: { subscription: subGroup.name, balance: stdGroup.name }, waited }, null, 2) + "\n",

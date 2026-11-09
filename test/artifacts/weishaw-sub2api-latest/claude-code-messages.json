@@ -1,0 +1,18 @@
+{
+  "unmarked": {
+    "status": 503,
+    "body": "{\"error\":{\"message\":\"No available accounts: this group only allows Claude Code clients\",\"type\":\"api_error\"},\"type\":\"error\"}"
+  },
+  "marked": {
+    "status": 503,
+    "body": "{\"error\":{\"message\":\"No available accounts: no available accounts\",\"type\":\"api_error\"},\"type\":\"error\"}"
+  },
+  "knownCount": {
+    "status": 503,
+    "body": "{\"error\":{\"message\":\"Service temporarily unavailable\",\"type\":\"api_error\"},\"type\":\"error\"}"
+  },
+  "unknownCount": {
+    "status": 503,
+    "body": "{\"error\":{\"message\":\"Service temporarily unavailable\",\"type\":\"api_error\"},\"type\":\"error\"}"
+  }
+}

@@ -60,6 +60,41 @@ test('single provider, loader and optional account naming', async () => {
   dump('loader', { baseURL: got.baseURL, fetch: typeof got.fetch, accountId: c.sets[0].body.accountId, provider: h.auth.provider })
 })
 
+const ccFixture = JSON.parse(readFileSync(join(here, 'fixtures', 'claude-code.json'), 'utf8'))
+// The fork answers 403 with its own wording; upstream sub2api refuses the same
+// client through scheduling, as a 503 naming the restriction.
+const ccRefusal = /This group is restricted to the official Claude Code client\.|this group only allows Claude Code clients/
+const refusedStatus = (s) => s === 403 || s === 503
+async function ccRequest(loader, { body = ccFixture.body, session = 'cc-e2e', path = '/v1/messages' } = {}) {
+  const response = await loader.fetch(state.base + path, {
+    method: 'POST', headers: { ...ccFixture.headers, 'user-agent': 'magpie/0.1.0', 'x-app': '',
+      'x-api-key': state.keys.claudeCode, 'content-type': 'application/json', 'x-magpie-session': session },
+    body: JSON.stringify({ ...body, model: state.model }),
+  })
+  return { status: response.status, body: await response.text() }
+}
+
+test('Claude Code attribution passes CC-only validation; unmarked clients remain refused', async () => {
+  const loader = await hooks.auth.loader(async () => authOf('claudeCode'))
+  const unmarked = await ccRequest(loader, { body: { ...ccFixture.body, system: ccFixture.body.system.slice(1) } })
+  const marked = await ccRequest(loader)
+  const countBody = { ...ccFixture.body, system: ccFixture.body.system.slice(1) }
+  const knownCount = await ccRequest(loader, { path: '/v1/messages/count_tokens', body: countBody })
+  const unknownCount = await ccRequest(loader, { path: '/v1/messages/count_tokens', body: countBody, session: 'unknown-session' })
+  dump('claude-code-messages', { unmarked, marked, knownCount, unknownCount })
+  assert.ok(refusedStatus(unmarked.status), `unmarked status ${unmarked.status}`)
+  assert.match(unmarked.body, ccRefusal)
+  assert.doesNotMatch(marked.body, ccRefusal)
+  assert.doesNotMatch(knownCount.body, ccRefusal)
+  if (state.fork) {
+    // upstream's count_tokens hides why it refused ("Service temporarily
+    // unavailable" either way), so only the fork can tell the two apart
+    assert.equal(unknownCount.status, 403)
+    assert.match(unknownCount.body, ccRefusal)
+  }
+  assert.ok(marked.status >= 400, 'no upstream accounts are attached to this group')
+})
+
 test('subscription: three windows, reset times, plan and expiry, no wallet', async () => {
   const { usage: u, upstream: r } = await read('subscription')
   assert.equal(u.error, undefined)
