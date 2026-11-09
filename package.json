@@ -1,6 +1,6 @@
 {
   "name": "magpie-jmds",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "jmds provider for magpie: subscription windows, extra usage, wallet balance and model prices",
   "type": "module",
   "main": "./index.mjs",
