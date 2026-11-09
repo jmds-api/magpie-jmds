@@ -1,7 +1,7 @@
 {
   "name": "magpie-jmds",
-  "version": "0.1.1",
-  "description": "jmds provider for magpie: subscription windows, extra usage, wallet balance and model prices",
+  "version": "0.1.2",
+  "description": "OpenCode / magpie provider plugin for jmds (绝命毒师, api.jmds.dev): subscription windows, extra usage, wallet balance and model prices as magpie usage",
   "type": "module",
   "main": "./index.mjs",
   "exports": "./index.mjs",
@@ -20,7 +20,10 @@
     "magpie",
     "magpie-plugin",
     "jmds",
-    "provider"
+    "provider",
+    "auth",
+    "jmds.dev",
+    "绝命毒师"
   ],
   "author": "Randy (broven)",
   "license": "MIT",
