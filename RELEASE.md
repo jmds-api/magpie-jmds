@@ -22,12 +22,12 @@ npm 的 Trusted Publishing 按包配置。首次发布须由维护者从已审�
 
 在 npm 的 **magpie-jmds › Settings › Trusted publishing** 中选择 GitHub Actions：
 
-- organization: `zerith-llc`
+- organization: `jmds-api`
 - repository: `magpie-jmds`
 - workflow: `publish.yml`
 - environment: 留空
 
-`package.json` 的 repository 必须为 `git+https://github.com/zerith-llc/magpie-jmds.git`。
+`package.json` 的 repository 必须为 `git+https://github.com/jmds-api/magpie-jmds.git`。
 工作流已配置 Node 24、npm ≥ 11.5.1、GitHub-hosted runner 和 `id-token: write`。
 维护者还需配置 CI 的只读拉取凭证 `GHCR_READ_TOKEN` 与镜像标签变量 `SUB2API_FORK_TAG`。
 外部 PR 没有该凭证时明确跳过 fork 测试，仍运行上游兼容测试。

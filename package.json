@@ -26,11 +26,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zerith-llc/magpie-jmds.git"
+    "url": "git+https://github.com/jmds-api/magpie-jmds.git"
   },
-  "homepage": "https://github.com/zerith-llc/magpie-jmds#readme",
+  "homepage": "https://github.com/jmds-api/magpie-jmds#readme",
   "bugs": {
-    "url": "https://github.com/zerith-llc/magpie-jmds/issues"
+    "url": "https://github.com/jmds-api/magpie-jmds/issues"
   },
   "engines": {
     "node": ">=20"
