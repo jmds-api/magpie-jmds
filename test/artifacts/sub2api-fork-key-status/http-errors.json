@@ -8,8 +8,39 @@
       "x-request-id": "fixture"
     },
     "body": {
-      "code": "session_rate_limited",
-      "message": "session usage limit exceeded"
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 403,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-magpie-sign-in": "expired",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "API_KEY_EXPIRED",
+      "message": "expired"
+    }
+  },
+  {
+    "status": 403,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "billing_error",
+        "message": "billing blocked"
+      }
     }
   },
   {
@@ -21,8 +52,23 @@
       "x-request-id": "fixture"
     },
     "body": {
-      "code": "session_rate_limited",
-      "message": "session usage limit exceeded"
+      "code": "USAGE_LIMIT_EXCEEDED",
+      "message": "daily usage limit exceeded"
+    }
+  },
+  {
+    "status": 403,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "billing_error",
+        "message": "billing blocked"
+      }
     }
   },
   {
@@ -127,7 +173,7 @@
       "error": {
         "type": "usage_limit_reached",
         "message": "Usage limit exceeded",
-        "resets_at": 1794235250
+        "resets_at": 1794235670
       }
     }
   },
@@ -143,7 +189,7 @@
       "code": "USAGE_LIMIT_EXCEEDED",
       "message": "daily usage limit exceeded",
       "error": {
-        "resets_at": 1794235250
+        "resets_at": 1794235670
       }
     }
   },
@@ -159,7 +205,7 @@
       "code": "USAGE_LIMIT_EXCEEDED",
       "message": "weekly usage limit exceeded",
       "error": {
-        "resets_at": 1794318050
+        "resets_at": 1794318470
       }
     }
   },
