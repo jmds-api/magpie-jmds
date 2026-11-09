@@ -460,8 +460,11 @@ function observations(base) {
 
 // Only error responses are inspected. The original Response (and headers/body)
 // is returned untouched unless a listed error can be stated more precisely.
+// snapshot is the account's last key-status reading, or undefined before the
+// first one: only the two quota rewrites need it (billing mode, reset time);
+// the others are stated from the response alone.
 async function rewrite(res, snapshot) {
-  if (res.ok || !snapshot) return res
+  if (res.ok) return res
   let body
   try { body = await res.clone().json() } catch { return res }
   const codes = [body?.code, body?.error?.code, body?.error?.type, body?.type]
@@ -481,10 +484,10 @@ async function rewrite(res, snapshot) {
   }
   if (status === 429 && has("USAGE_LIMIT_EXCEEDED")) {
     const window = ["daily", "weekly", "monthly"].find(w => new RegExp(`\\b${w}\\b`, "i").test(message))
-    const reset = window && at(snapshot.subscription?.windows?.find(w => w.window === window)?.reset_at)
+    const reset = window && at(snapshot?.subscription?.windows?.find(w => w.window === window)?.reset_at)
     if (reset === undefined || !window) return res
     next = { ...body, error: { ...(typeof body.error === "object" ? body.error : {}), resets_at: reset } }
-  } else if (status === 403 && has("billing_error") && snapshot.group?.billing_mode === "subscription") {
+  } else if (status === 403 && has("billing_error") && snapshot?.group?.billing_mode === "subscription") {
     const resets = (snapshot.subscription?.windows ?? []).filter(w => w.used_usd >= w.limit_usd && w.limit_usd > 0).map(w => at(w.reset_at)).filter(t => t !== undefined)
     status = 429
     next = quota(resets.length ? Math.min(...resets) : undefined)

@@ -108,12 +108,23 @@ test('loader fetch classifies supplied HTTP errors without changing success or u
     return { res, body: row.body }
   }
   try {
-    // Empty cache: nothing is inferred, even errors independent of billing mode.
+    // Empty cache: errors that need no reading are still stated precisely
+    // (an expired key right after magpie starts must still ask for sign-in) ...
     let got = await request()
-    assert.deepEqual(got.body, reply)
+    assert.equal(got.res.status, 429)
+    assert.match(got.body.error.message, /rate limit/i)
+    reply = { code: 'API_KEY_EXPIRED', message: 'expired' }; code = 403
+    got = await request(); assert.equal(got.res.headers.get('x-magpie-sign-in'), 'expired')
+    // ... but the two that need a reading (billing mode, reset time) are left as they are.
+    reply = { error: { type: 'billing_error', message: 'billing blocked' } }
+    got = await request(); assert.equal(got.res.status, 403); assert.deepEqual(got.body, reply)
+    reply = { code: 'USAGE_LIMIT_EXCEEDED', message: 'daily usage limit exceeded' }; code = 429
+    got = await request(); assert.deepEqual(got.body, reply)
     await h.auth.usage(async () => other)
+    reply = { error: { type: 'billing_error', message: 'billing blocked' } }; code = 403
     got = await request(); assert.deepEqual(got.body, reply, 'another account does not populate this account')
     await h.auth.usage(async () => auth)
+    code = 429
     for (const shape of [c => ({ code: c }), c => ({ error: { code: c } }), c => ({ error: { type: c } })]) {
       for (const c of ['session_rate_limited', 'user_session_limit_exceeded']) {
         reply = { ...shape(c), message: 'usage limit exceeded for this session' }
