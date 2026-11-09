@@ -504,11 +504,52 @@ async function rewrite(res, snapshot) {
   return new Response(JSON.stringify(next), { status, headers })
 }
 
+// Recover only the identity carried by Claude Code itself. Never rewrite the
+// body: Request bodies are read through a clone and unsupported bodies pass on.
+async function claudeCodeInit(input, init, sessions) {
+  try {
+    const request = input instanceof Request ? input : undefined
+    const method = init?.method ?? request?.method ?? "GET"
+    const path = new URL(request?.url ?? input).pathname
+    if (method.toUpperCase() !== "POST" || !/\/v1\/messages(?:\/count_tokens)?$/.test(path)) return init
+    const headers = new Headers(init?.headers ?? request?.headers)
+    if (headers.get("user-agent")?.startsWith("claude-cli/")) return init
+    let text
+    if (init?.body != null) {
+      if (typeof init.body === "string") text = init.body
+      else if (init.body instanceof Uint8Array || init.body instanceof ArrayBuffer) text = new TextDecoder().decode(init.body)
+      else return init
+    } else if (request) text = await request.clone().text()
+    else return init
+    const body = JSON.parse(text)
+    const session = headers.get("x-magpie-session")
+    let identity
+    if (typeof body?.metadata?.user_id === "string" && body.metadata.user_id.trim() && Array.isArray(body.system)) {
+      for (const block of body.system) {
+        if (block?.type !== "text" || typeof block.text !== "string" || !block.text.startsWith("x-anthropic-billing-header")) continue
+        const version = /\bcc_version=(\d+\.\d+\.\d+)(?:\.[0-9]+)*(?=;|\s|$)/.exec(block.text)?.[1]
+        const entrypoint = /\bcc_entrypoint=([a-zA-Z0-9_-]+)(?=;|\s|$)/.exec(block.text)?.[1]
+        if (version && entrypoint) { identity = { version, entrypoint }; break }
+      }
+    }
+    if (!identity && path.endsWith("/count_tokens") && session) identity = sessions.get(session)
+    if (!identity) return init
+    headers.set("User-Agent", `claude-cli/${identity.version} (external, ${identity.entrypoint})`)
+    headers.set("X-App", "cli")
+    if (session) {
+      if (!sessions.has(session) && sessions.size >= 1000) sessions.delete(sessions.keys().next().value)
+      sessions.set(session, identity)
+    }
+    return { ...init, headers }
+  } catch { return init }
+}
+
 export async function JmdsPlugin({ client } = {}, options = {}) {
   const base = root(options.baseURL ?? DEFAULT_BASE)
   const bad = checkURL(base)
   if (bad) throw new Error(`magpie-jmds: baseURL: ${bad}`)
   const facts = observations(base)
+  const sessions = new Map()
   return {
     auth: {
       provider: ID,
@@ -520,7 +561,7 @@ export async function JmdsPlugin({ client } = {}, options = {}) {
         await named(client, ID, auth, base)
         return {
           baseURL: base + "/v1", apiKey: auth.key,
-          fetch: async (input, init) => rewrite(await fetch(input, init), facts.readings.get(auth.key)),
+          fetch: async (input, init) => rewrite(await fetch(input, await claudeCodeInit(input, init, sessions)), facts.readings.get(auth.key)),
         }
       },
       async usage(getAuth) {

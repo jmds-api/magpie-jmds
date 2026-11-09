@@ -17,6 +17,8 @@ magpie plugin login jmds
 
 也可以在 magpie 应用的插件页安装 `magpie-jmds`，再添加 `jmds` 账号。
 
+经 magpie 使用 Claude Code 时，插件会根据请求中的 Claude Code 归因信息补齐客户端身份头。
+
 登录时只需要自己的 API key（`sk-…`），不用输入站点地址或网页登录密码。插件会先问一个**可选账号名**，直接回车即可，再粘贴 API key。每次登录对应一个账号；有多个 key 时可重复登录。
 
 填写账号名后以它显示；留空则显示 `api.jmds.dev …key后四位`。插件第一次使用账号时写入名字，第一次用量读取前可能暂时显示默认名字。magpie 用名字保存账号设置：登录后要换名，请删除账号再登录。同一 key 不必重复添加。

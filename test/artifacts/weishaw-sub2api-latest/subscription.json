@@ -1,7 +1,7 @@
 {
   "image": "weishaw/sub2api:latest",
   "usage": {
-    "user": "127.0.0.1:32799 …b8c5",
+    "user": "127.0.0.1:32810 …13e3",
     "plan": "Test Subscription",
     "windows": [
       {
@@ -15,7 +15,7 @@
         "used": 5.25,
         "display": "$1.05 / $20.00",
         "span": 604800,
-        "resetsAt": "2026-11-16T13:41:35.813Z"
+        "resetsAt": "2026-11-16T18:32:36.432Z"
       },
       {
         "name": "30 days",
@@ -24,7 +24,7 @@
         "span": 2592000
       }
     ],
-    "until": "2026-12-09T13:41:35.688132Z"
+    "until": "2026-12-09T18:32:36.323411Z"
   },
   "upstream": {
     "daily_usage": [
@@ -61,16 +61,16 @@
     "subscription": {
       "daily_limit_usd": 5,
       "daily_usage_usd": 1.05,
-      "expires_at": "2026-12-09T13:41:35.688132Z",
+      "expires_at": "2026-12-09T18:32:36.323411Z",
       "monthly_limit_usd": 50,
       "monthly_usage_usd": 1.05,
       "weekly_limit_usd": 20,
       "weekly_usage_usd": 1.05,
-      "weekly_window_start": "2026-11-09T13:41:35.813723Z"
+      "weekly_window_start": "2026-11-09T18:32:36.432134Z"
     },
     "unit": "USD",
     "usage": {
-      "average_duration_ms": 13,
+      "average_duration_ms": 11,
       "rpm": 0,
       "today": {
         "actual_cost": 1.05,

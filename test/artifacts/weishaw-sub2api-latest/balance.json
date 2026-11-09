@@ -1,7 +1,7 @@
 {
   "image": "weishaw/sub2api:latest",
   "usage": {
-    "user": "127.0.0.1:32799 …a6fc",
+    "user": "127.0.0.1:32810 …89f0",
     "plan": "钱包余额",
     "balance": "$7.90"
   },
@@ -40,7 +40,7 @@
     "remaining": 7.9,
     "unit": "USD",
     "usage": {
-      "average_duration_ms": 2,
+      "average_duration_ms": 1,
       "rpm": 0,
       "today": {
         "actual_cost": 1.05,

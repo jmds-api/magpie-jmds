@@ -17,6 +17,8 @@ magpie plugin login jmds
 
 Alternatively, install `magpie-jmds` from magpie's plugin page and add a `jmds` account.
 
+When using Claude Code through magpie, the plugin restores client identity headers from the request's Claude Code attribution.
+
 Only your API key (`sk-…`) is required. No site address, website password or browser sign-in is needed. The first prompt is an **optional account name**: press Enter to skip it, then paste the key. Each sign-in adds one account; repeat for additional keys.
 
 A supplied name becomes the account's label. Otherwise it is `api.jmds.dev …last4`. Naming is saved on first use, so the initial label may briefly be magpie's default. magpie stores account settings under the name: remove and sign in again to rename. Do not add the same key unnecessarily.

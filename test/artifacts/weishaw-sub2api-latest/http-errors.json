@@ -173,7 +173,7 @@
       "error": {
         "type": "usage_limit_reached",
         "message": "Usage limit exceeded",
-        "resets_at": 1794235671
+        "resets_at": 1794252757
       }
     }
   },
@@ -189,7 +189,7 @@
       "code": "USAGE_LIMIT_EXCEEDED",
       "message": "daily usage limit exceeded",
       "error": {
-        "resets_at": 1794235671
+        "resets_at": 1794252757
       }
     }
   },
@@ -205,7 +205,7 @@
       "code": "USAGE_LIMIT_EXCEEDED",
       "message": "weekly usage limit exceeded",
       "error": {
-        "resets_at": 1794318471
+        "resets_at": 1794335557
       }
     }
   },
