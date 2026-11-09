@@ -5,7 +5,7 @@
 # a unique project name and always tears it down with `down -v`.
 services:
   sub2api:
-    image: weishaw/sub2api:${SUB2API_IMAGE_TAG:-0.2.14}
+    image: ${SUB2API_IMAGE:-weishaw/sub2api:latest}
     ports: ["127.0.0.1::8080"]
     environment:
       AUTO_SETUP: "true"
@@ -39,7 +39,8 @@ services:
   postgres:
     image: postgres:18-alpine
     environment: {POSTGRES_USER: sub2api, POSTGRES_PASSWORD: pgpass123, POSTGRES_DB: sub2api}
-    healthcheck: {test: ["CMD-SHELL", "pg_isready -U sub2api -d sub2api"], interval: 2s, timeout: 3s, retries: 30}
+    # The init server accepts Unix sockets before it accepts TCP connections.
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U sub2api -d sub2api"], interval: 2s, timeout: 3s, retries: 30}
     restart: "no"
   redis:
     image: redis:8-alpine

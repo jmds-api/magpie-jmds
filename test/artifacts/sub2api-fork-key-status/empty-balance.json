@@ -1,0 +1,39 @@
+{
+  "usage": {
+    "user": "127.0.0.1:32798 …51e4",
+    "windows": [
+      {
+        "name": "余额",
+        "balance": 0,
+        "unit": "USD"
+      }
+    ],
+    "plan": "按量付费",
+    "balance": "$0.00"
+  },
+  "original": {
+    "status": 403,
+    "body": {
+      "code": "INSUFFICIENT_BALANCE",
+      "message": "Insufficient account balance"
+    }
+  },
+  "rewritten": {
+    "status": 403,
+    "headers": {
+      "content-length": "72",
+      "content-type": "application/json; charset=utf-8",
+      "date": "Mon, 09 Nov 2026 13:41:12 GMT",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "x-client-request-id": "350f75d6-926e-4047-a156-bf5dccb3a44e",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-request-id": "c3b1299c-361d-4dfa-a4a6-2c87734ec71f",
+      "x-served-version": "1.6.144"
+    },
+    "body": {
+      "code": "INSUFFICIENT_BALANCE",
+      "message": "Insufficient account balance"
+    }
+  }
+}

@@ -1,0 +1,264 @@
+[
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "session_rate_limited",
+      "message": "session usage limit exceeded"
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "session_rate_limited",
+      "message": "session usage limit exceeded"
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "60",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "60",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "60",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "rate_limit_error",
+        "message": "Rate limit: too many requests"
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "usage_limit_reached",
+        "message": "Usage limit exceeded",
+        "resets_at": 1794235250
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "USAGE_LIMIT_EXCEEDED",
+      "message": "daily usage limit exceeded",
+      "error": {
+        "resets_at": 1794235250
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "USAGE_LIMIT_EXCEEDED",
+      "message": "weekly usage limit exceeded",
+      "error": {
+        "resets_at": 1794318050
+      }
+    }
+  },
+  {
+    "status": 429,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "USAGE_LIMIT_EXCEEDED",
+      "message": "monthly usage limit exceeded"
+    }
+  },
+  {
+    "status": 403,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-magpie-sign-in": "expired",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "API_KEY_EXPIRED",
+      "message": "expired"
+    }
+  },
+  {
+    "status": 402,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "payment_required",
+        "message": "Subscription unavailable"
+      }
+    }
+  },
+  {
+    "status": 402,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "payment_required",
+        "message": "Subscription unavailable"
+      }
+    }
+  },
+  {
+    "status": 403,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "error": {
+        "type": "billing_error",
+        "message": "Insufficient balance"
+      }
+    }
+  },
+  {
+    "status": 503,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "unknown",
+      "message": "unchanged"
+    }
+  },
+  {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json",
+      "retry-after": "13",
+      "transfer-encoding": "chunked",
+      "x-request-id": "fixture"
+    },
+    "body": {
+      "code": "session_rate_limited",
+      "message": "success is not an error"
+    }
+  }
+]

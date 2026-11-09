@@ -1,7 +1,6 @@
 node_modules/
 .e2e/
 .config/
-test/artifacts/
 test/.state/
 *.log
 .DS_Store

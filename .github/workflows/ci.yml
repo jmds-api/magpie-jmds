@@ -5,34 +5,75 @@ on:
   push:
     tags: ["v*"]
   workflow_call:
+    secrets:
+      GHCR_READ_TOKEN:
+        required: false
 
 permissions:
   contents: read
 
 jobs:
-  e2e:
-    name: e2e (sub2api ${{ matrix.sub2api }})
+  availability:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        # the oldest supported, and the newest release
-        sub2api: ["0.2.14", "latest"]
+    outputs:
+      fork: ${{ steps.token.outputs.available }}
+    steps:
+      - id: token
+        env:
+          TOKEN_AVAILABLE: ${{ secrets.GHCR_READ_TOKEN != '' }}
+        run: |
+          echo "available=$TOKEN_AVAILABLE" >> "$GITHUB_OUTPUT"
+          if [ "$TOKEN_AVAILABLE" != true ]; then
+            echo 'Skipping fork job: GHCR_READ_TOKEN is unavailable (for example on external pull requests).'
+          fi
+
+  fork:
+    needs: availability
+    if: needs.availability.outputs.fork == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: the module loads
-        run: node -e "import('./index.mjs').then(m => { if (typeof m.Sub2apiPlugin !== 'function') process.exit(1) })"
-      - name: end to end against a real sub2api
+      - name: Log in to GHCR (read-only token)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
+      - name: Check module and run fork E2E
         env:
-          SUB2API_IMAGE_TAG: ${{ matrix.sub2api }}
-        run: npm test
+          SUB2API_IMAGE: ghcr.io/broven/sub2api:${{ vars.SUB2API_FORK_TAG }}
+        run: |
+          test -n '${{ vars.SUB2API_FORK_TAG }}' || { echo 'SUB2API_FORK_TAG must be configured'; exit 1; }
+          node --check index.mjs
+          ./test/run.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: e2e-sub2api-${{ matrix.sub2api }}
-          path: test/artifacts/${{ matrix.sub2api }}/
+          name: e2e-fork
+          path: test/artifacts/
+          if-no-files-found: warn
+
+  fallback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Check module and run upstream fallback E2E
+        env:
+          SUB2API_IMAGE: weishaw/sub2api:latest
+        run: |
+          node --check index.mjs
+          ./test/run.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-fallback
+          path: test/artifacts/
           if-no-files-found: warn
