@@ -527,7 +527,8 @@ async function claudeCodeInit(input, init, sessions) {
     if (typeof body?.metadata?.user_id === "string" && body.metadata.user_id.trim() && Array.isArray(body.system)) {
       for (const block of body.system) {
         if (block?.type !== "text" || typeof block.text !== "string" || !block.text.startsWith("x-anthropic-billing-header")) continue
-        const version = /\bcc_version=(\d+\.\d+\.\d+)(?:\.[0-9]+)*(?=;|\s|$)/.exec(block.text)?.[1]
+        // Claude Code's attribution suffix is hexadecimal (e.g. 2.1.321.ff0).
+        const version = /\bcc_version=(\d+\.\d+\.\d+)(?:\.[0-9a-f]+)*(?=;|\s|$)/.exec(block.text)?.[1]
         const entrypoint = /\bcc_entrypoint=([a-zA-Z0-9_-]+)(?=;|\s|$)/.exec(block.text)?.[1]
         if (version && entrypoint) { identity = { version, entrypoint }; break }
       }
