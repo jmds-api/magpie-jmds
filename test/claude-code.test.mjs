@@ -29,6 +29,14 @@ test('Claude Code identity survives forwarding without changing request bytes', 
     assert.equal(received.body, body)
   }
   for (const data of [body, new TextEncoder().encode(body), new TextEncoder().encode(body).buffer]) marked(await send(data))
+  // The attribution suffix is a hex hash, so numeric-only captures also occur.
+  for (const suffix of ['', '.812', '.a3f', '.0ab', '.812.abc']) {
+    const data = body.replace('cc_version=2.1.321.ff0;', `cc_version=2.1.321${suffix};`)
+    const received = await send(data)
+    assert.equal(received.headers['user-agent'], fixture.headers['user-agent'])
+    assert.equal(received.headers['x-app'], fixture.headers['x-app'])
+    assert.equal(received.body, data)
+  }
   const request = new Request(base + '/prefix/v1/messages', { method: 'POST', headers, body })
   marked(await (await loader.fetch(request)).json())
   const override = new Request(base + '/v1/messages', { method: 'POST', headers, body: '{}' })
@@ -38,7 +46,7 @@ test('Claude Code identity survives forwarding without changing request bytes', 
   const existing = await send(body, { headers: { ...headers, 'user-agent': originalUA, 'x-app': 'keep' } })
   assert.equal(existing.headers['user-agent'], originalUA)
   assert.equal(existing.headers['x-app'], 'keep')
-  for (const data of ['{bad json', '{}', JSON.stringify({ ...fixture.body, metadata: {} }), JSON.stringify({ ...fixture.body, metadata: { user_id: ' ' } }), JSON.stringify({ ...fixture.body, system: fixture.body.system.slice(1) })]) {
+  for (const data of ['{bad json', '{}', JSON.stringify({ ...fixture.body, metadata: {} }), JSON.stringify({ ...fixture.body, metadata: { user_id: ' ' } }), JSON.stringify({ ...fixture.body, system: fixture.body.system.slice(1) }), body.replace('.ff0;', '.ffz;'), body.replace('.ff0;', '.ff0junk;')]) {
     const received = await send(data)
     assert.equal(received.headers['user-agent'], headers['user-agent'])
     assert.equal(received.headers['x-app'], undefined)

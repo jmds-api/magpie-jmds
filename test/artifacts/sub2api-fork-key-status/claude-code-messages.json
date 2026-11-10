@@ -1,0 +1,18 @@
+{
+  "unmarked": {
+    "status": 403,
+    "body": "{\"error\":{\"message\":\"This group is restricted to the official Claude Code client.\",\"type\":\"permission_error\"},\"type\":\"error\"}"
+  },
+  "marked": {
+    "status": 503,
+    "body": "{\"error\":{\"message\":\"Server is temporarily overloaded, please retry later. (ref: 5fe7e3fa-f469-4092-9543-2c06ddd1caa6)\",\"type\":\"api_error\"},\"type\":\"error\"}"
+  },
+  "knownCount": {
+    "status": 503,
+    "body": "{\"error\":{\"message\":\"Server is temporarily overloaded, please retry later. (ref: cefc1d53-1a1a-440e-95d8-22d1c12f39e7)\",\"type\":\"api_error\"},\"type\":\"error\"}"
+  },
+  "unknownCount": {
+    "status": 403,
+    "body": "{\"error\":{\"message\":\"This group is restricted to the official Claude Code client.\",\"type\":\"permission_error\"},\"type\":\"error\"}"
+  }
+}

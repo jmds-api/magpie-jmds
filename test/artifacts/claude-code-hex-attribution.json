@@ -1,0 +1,22 @@
+{
+  "source": "Claude Code 2.1.321 request captured by a loopback HTTP receiver with a fixed Say OK prompt and dummy credentials",
+  "billing_block": "x-anthropic-billing-header: cc_version=2.1.321.ff0; cc_entrypoint=sdk-cli;",
+  "reproduction": {
+    "command": "SUB2API_IMAGE=sub2api-fork:key-status ./test/run.sh",
+    "gateway_group": "claude_code_only=true, no upstream accounts",
+    "before_fix": {
+      "marked_status": 403,
+      "marked_error": "This group is restricted to the official Claude Code client.",
+      "http_receiver_user_agent": "magpie/test"
+    },
+    "after_fix": {
+      "marked_status": 503,
+      "marked_error_without_request_ref": "Server is temporarily overloaded, please retry later.",
+      "http_receiver_user_agent": "claude-cli/2.1.321 (external, sdk-cli)",
+      "http_receiver_x_app": "cli",
+      "request_body": "unchanged",
+      "unmarked_status": 403,
+      "unmarked_error": "This group is restricted to the official Claude Code client."
+    }
+  }
+}
